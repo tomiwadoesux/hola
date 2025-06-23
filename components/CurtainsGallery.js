@@ -6,7 +6,6 @@ import Image from "next/image";
 export default function CurtainsGallery() {
   const images = [
     "/images/03.webp",
-    "/images/29.webp",
     "/images/44.webp",
     "/images/16.webp",
     "/images/35.webp",
