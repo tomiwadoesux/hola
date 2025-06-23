@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.14.1",
     "@studio-freight/lenis": "^1.0.42",
     "curtainsjs": "^8.1.6",
     "gsap": "^3.13.0",
