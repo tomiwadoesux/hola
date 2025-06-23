@@ -220,7 +220,7 @@ export default function Home() {
           <CurtainsPolaroids />
         </div>
         <div></div>
-        <div id="photos" className="flex pt-11 h-full w-full flex-col">
+        <div id="photos" className="flex  h-full w-full flex-col">
           <AnimatedText
             text="PHOTOS"
             className="self-center text-black py-11   text-center text-4xl md:text-6xl lg:text-6xl"

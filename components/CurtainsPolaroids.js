@@ -267,7 +267,7 @@ export default function CurtainsPolaroids() {
         }}
       ></div>
       <div id="planes">
-        <div className="px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 min-h-screen relative z-10">
+        <div className="px-6 grid grid-cols-2 gap-4 min-h-screen relative z-10">
           {images.map((item, index) => (
             <div key={index} className="plane aspect-[2/3] relative w-full">
               <h2 className="absolute inset-0 flex justify-center items-center m-0 text-4xl md:text-[3.25vw] font-bold opacity-0 text-gray-800">
