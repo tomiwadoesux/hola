@@ -195,29 +195,34 @@ export default function Home() {
             />
           </div>
 
-          {/* <div className=" px-6  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className=" px-6  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <div className="">
               <Image
                 src="/images/23.webp"
                 alt="Model"
                 width={800}
                 height={600}
+                      loading="eager" // disables lazy loading
+
               />
             </div>
             <div className="">
               {" "}
-              <Image src="/images/63.webp" alt="01" height={700} width={900} />
+              <Image src="/images/63.webp" alt="01" height={700} width={900}       loading="eager" // disables lazy loading
+ />
             </div>
             <div className=" ">
               {" "}
-              <Image src="/images/61.webp" alt="01" height={700} width={900} />
+              <Image src="/images/61.webp" alt="01" height={700} width={900}       loading="eager" // disables lazy loading
+ />
             </div>
             <div className=" ">
               {" "}
-              <Image src="/images/62.webp" alt="01" height={700} width={900} />
+              <Image src="/images/62.webp" alt="01" height={700} width={900}       loading="eager" // disables lazy loading
+/>
             </div>
-          </div> */}
-          <CurtainsPolaroids />
+          </div>
+          {/* <CurtainsPolaroids /> */}
         </div>
         <div></div>
         <div id="photos" className="flex  h-full w-full flex-col">
