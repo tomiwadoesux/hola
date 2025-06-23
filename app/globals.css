@@ -182,3 +182,18 @@ h1, h2, h3 {
   position: relative; /* Ensures content stays above the overlay */
   z-index: 2; /* Ensures content is above the overlay */
 }
+
+.curtains-canvas,
+#canvas > canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0;
+  padding: 0;
+  display: block;
+  pointer-events: none;
+  z-index: 20;
+}
+

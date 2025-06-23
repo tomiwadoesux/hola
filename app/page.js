@@ -52,8 +52,7 @@ export default function Home() {
           <div className="bg-image2  w-full h-[100vh] lg:w-1/2 lg:h-full ">
             <div className="items-center min-h-screen justify-center flex flex-col gap-4">
               <h4 className="self-center text-2xl  text-center">
-              {`Height: 182.88cm / 6'0"`}
-         
+                {`Height: 182.88cm / 6'0"`}
               </h4>
               <h4 className="self-center text-2xl  text-center">
                 Waist: 82.5cm
@@ -114,7 +113,7 @@ export default function Home() {
                     <path
                       d="M4.22904 12.2711L11.7715 4.7286M11.7715 4.7286H5.17185M11.7715 4.7286V11.3283"
                       stroke="white"
-                    strokeWidth="1.5"
+                      strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
@@ -221,17 +220,20 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div>
+          
+        </div>
         <div id="photos" className="flex pt-11  flex-col">
-          {/* <h1 className="self-center text-black py-11   text-center text-4xl md:text-6xl lg:text-6xl">
-          PHOTOS
-        </h1> */}
           <AnimatedText
             text="PHOTOS"
             className="self-center text-black py-11   text-center text-4xl md:text-6xl lg:text-6xl"
           />
         </div>
-        <div className="gap-3 flex-col flex">
-          {/* <div className=" px-6  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div>
+          <CurtainsGallery />
+        </div>
+
+        {/* <div className=" px-6  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <div className="">
             <Image src="/images/03.webp" alt="01" height={700} width={900} />
           </div>
@@ -380,8 +382,7 @@ export default function Home() {
             <Image src="/images/58.webp" alt="Model" width={800} height={600} />
           </div>
         </div> */}
-          <CurtainsGallery />
-        </div>
+
         <div id="videos" className="flex pt-11  flex-col">
           {/* <h1 className="self-center text-black py-11   text-center text-4xl md:text-6xl lg:text-6xl">
           VIDEOS
