@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ededed;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif; /* Default font for body */
+}
+
+h1, h2, h3 {
+  font-family: 'IBM Plex Serif', serif; /* Specific font for headings */
+}
+
+.bg-image {
+  height: 100vh;
+  background-image: url('/images/01.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; /* Required for overlay positioning */
+}
+
+.bg-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1; /* Ensures overlay is above the background */
+}
+
+
+.bg-image > * {
+  position: relative; /* Ensures content stays above the overlay */
+  z-index: 2; /* Ensures content is above the overlay */
+}
+
+.bg-image2 {
+  height: 100vh;
+  background-image: url('/images/41.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; /* Required for overlay positioning */
+}
+
+.bg-image2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1; /* Ensures overlay is above the background */
+}
+
+
+.bg-image2 > * {
+  position: relative; /* Ensures content stays above the overlay */
+  z-index: 2; /* Ensures content is above the overlay */
+}
+
+.bg-image3 {
+  height: 100vh;
+  background-image: url('/images/43.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; /* Required for overlay positioning */
+}
+
+.bg-image3::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1; /* Ensures overlay is above the background */
+}
+
+
+.bg-image3 > * {
+  position: relative; /* Ensures content stays above the overlay */
+  z-index: 2; /* Ensures content is above the overlay */
+}
+
+.bg-image4 {
+  height: 100vh;
+  background-image: url('/images/65.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; /* Required for overlay positioning */
+}
+
+.bg-image4::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1; /* Ensures overlay is above the background */
+}
+
+
+.bg-image4 > * {
+  position: relative; /* Ensures content stays above the overlay */
+  z-index: 2; /* Ensures content is above the overlay */
+}
+.bg-image5 {
+  height: 100vh;
+  background-image: url('/images/38.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; /* Required for overlay positioning */
+}
+
+.bg-image5::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1; /* Ensures overlay is above the background */
+}
+
+
+.bg-image5 > * {
+  position: relative; /* Ensures content stays above the overlay */
+  z-index: 2; /* Ensures content is above the overlay */
+}
+.bg-image6 {
+  height: 100vh;
+  background-image: url('/images/66.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; /* Required for overlay positioning */
+}
+
+.bg-image6::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1; /* Ensures overlay is above the background */
+}
+
+
+.bg-image6 > * {
+  position: relative; /* Ensures content stays above the overlay */
+  z-index: 2; /* Ensures content is above the overlay */
+}
