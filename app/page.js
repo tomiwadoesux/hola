@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import AnimatedText from "@/components/AnimatedText";
 import CurtainsGallery from "@/components/CurtainsGallery";
 import SmoothScroll from "@/components/SmoothScroll";
+import CurtainsPolaroids from "@/components/CurtainsPolaroids";
 
 export default function Home() {
   const LazyVideo = dynamic(() => import("../components/lazyvideo"), {
@@ -185,19 +186,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className=" h-fit  ">
+        <div className=" h-[9`0vh]  ">
           <div className="absolute inset-0 bg-black/30"></div>
           <div id="polaroids" className="flex py-11  flex-col">
-            {/* <h1 className="self-center text-black text-center text-4xl md:text-6xl lg:text-6xl">
-            POLAROIDS
-          </h1> */}
             <AnimatedText
               text="POLAROIDS"
               className="self-center text-black py-11   text-center text-4xl md:text-6xl lg:text-6xl"
             />
           </div>
 
-          <div className=" px-6  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {/* <div className=" px-6  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <div className="">
               <Image
                 src="/images/23.webp"
@@ -218,12 +216,11 @@ export default function Home() {
               {" "}
               <Image src="/images/62.webp" alt="01" height={700} width={900} />
             </div>
-          </div>
+          </div> */}
+          <CurtainsPolaroids />
         </div>
-        <div>
-          
-        </div>
-        <div id="photos" className="flex pt-11  flex-col">
+        <div></div>
+        <div id="photos" className="flex pt-11 h-full w-full flex-col">
           <AnimatedText
             text="PHOTOS"
             className="self-center text-black py-11   text-center text-4xl md:text-6xl lg:text-6xl"

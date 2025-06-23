@@ -22,16 +22,18 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif; /* Default font for body */
+  font-family: "Montserrat", Arial, Helvetica, sans-serif; /* Default font for body */
 }
 
-h1, h2, h3 {
-  font-family: 'IBM Plex Serif', serif; /* Specific font for headings */
+h1,
+h2,
+h3 {
+  font-family: "IBM Plex Serif", serif; /* Specific font for headings */
 }
 
 .bg-image {
   height: 100vh;
-  background-image: url('/images/01.webp');
+  background-image: url("/images/01.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -39,7 +41,7 @@ h1, h2, h3 {
 }
 
 .bg-image::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -48,7 +50,6 @@ h1, h2, h3 {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
   z-index: 1; /* Ensures overlay is above the background */
 }
-
 
 .bg-image > * {
   position: relative; /* Ensures content stays above the overlay */
@@ -57,7 +58,7 @@ h1, h2, h3 {
 
 .bg-image2 {
   height: 100vh;
-  background-image: url('/images/41.webp');
+  background-image: url("/images/41.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -65,7 +66,7 @@ h1, h2, h3 {
 }
 
 .bg-image2::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -74,7 +75,6 @@ h1, h2, h3 {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
   z-index: 1; /* Ensures overlay is above the background */
 }
-
 
 .bg-image2 > * {
   position: relative; /* Ensures content stays above the overlay */
@@ -83,7 +83,7 @@ h1, h2, h3 {
 
 .bg-image3 {
   height: 100vh;
-  background-image: url('/images/43.webp');
+  background-image: url("/images/43.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -91,7 +91,7 @@ h1, h2, h3 {
 }
 
 .bg-image3::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -100,7 +100,6 @@ h1, h2, h3 {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
   z-index: 1; /* Ensures overlay is above the background */
 }
-
 
 .bg-image3 > * {
   position: relative; /* Ensures content stays above the overlay */
@@ -109,7 +108,7 @@ h1, h2, h3 {
 
 .bg-image4 {
   height: 100vh;
-  background-image: url('/images/65.webp');
+  background-image: url("/images/65.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -117,7 +116,7 @@ h1, h2, h3 {
 }
 
 .bg-image4::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -126,7 +125,6 @@ h1, h2, h3 {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
   z-index: 1; /* Ensures overlay is above the background */
 }
-
 
 .bg-image4 > * {
   position: relative; /* Ensures content stays above the overlay */
@@ -134,7 +132,7 @@ h1, h2, h3 {
 }
 .bg-image5 {
   height: 100vh;
-  background-image: url('/images/38.webp');
+  background-image: url("/images/38.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -142,7 +140,7 @@ h1, h2, h3 {
 }
 
 .bg-image5::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -151,7 +149,6 @@ h1, h2, h3 {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
   z-index: 1; /* Ensures overlay is above the background */
 }
-
 
 .bg-image5 > * {
   position: relative; /* Ensures content stays above the overlay */
@@ -159,7 +156,7 @@ h1, h2, h3 {
 }
 .bg-image6 {
   height: 100vh;
-  background-image: url('/images/66.webp');
+  background-image: url("/images/66.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -167,7 +164,7 @@ h1, h2, h3 {
 }
 
 .bg-image6::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -177,13 +174,12 @@ h1, h2, h3 {
   z-index: 1; /* Ensures overlay is above the background */
 }
 
-
 .bg-image6 > * {
   position: relative; /* Ensures content stays above the overlay */
   z-index: 2; /* Ensures content is above the overlay */
 }
 
-.curtains-canvas,
+#canvas,
 #canvas > canvas {
   position: fixed;
   top: 0;
@@ -196,4 +192,3 @@ h1, h2, h3 {
   pointer-events: none;
   z-index: 20;
 }
-
