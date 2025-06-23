@@ -34,7 +34,7 @@ export default function Home() {
               AKINWALE OLAOLUWA
             </h1>
             <a
-              href="mailto:ayotomiwawaledurojaye@gmail.com"
+              href="mailto:Olaoluwaakinwale89@gmail.com"
               className="rounded-3xl border px-4 text-base py-2 border-white text-white hover:bg-white hover:text-black transition-colors duration-300 text-center"
             >
               {`Let's Connect`}
@@ -420,7 +420,7 @@ export default function Home() {
               </a>
 
               <a
-                href="mailto:ayotomiwawaledurojaye@gmail.com"
+                href="mailto:Olaoluwaakinwale89@gmail.com"
                 className="rounded-3xl border px-4 text-base py-2 border-white text-white hover:bg-white hover:text-black transition-colors duration-300 text-center"
               >
                 E-Mail
