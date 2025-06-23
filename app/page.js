@@ -14,14 +14,14 @@ export default function Home() {
   // Example video list
   const videoList = [
     { src: "/videos/02.mov", poster: "/images/22.webp" },
-    { src: "/videos/03.mov", poster: "/images/22.web" },
+    { src: "/videos/09.mov", poster: "/images/22.web" },
     { src: "/videos/04.mov", poster: "/images/22.web" },
     { src: "/videos/05.mov", poster: "/images/22.web" },
-    { src: "/videos/06.mov", poster: "/images/22.web" },
     { src: "/videos/07.mov", poster: "/images/22.web" },
-    { src: "/videos/09.mov", poster: "/images/22.web" },
-    { src: "/videos/10.mov", poster: "/images/22.web" },
+    { src: "/videos/06.mov", poster: "/images/22.web" },
     { src: "/videos/08.mov", poster: "/images/22.web" },
+    { src: "/videos/10.mov", poster: "/images/22.web" },
+    { src: "/videos/03.mov", poster: "/images/22.web" },
   ];
 
   return (
@@ -155,7 +155,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="bg-image  w-full h-[100vh] lg:w-1/2 lg:h-full ">
+          <div className="bg-image1  w-full h-[100vh] lg:w-1/2 lg:h-full ">
             <div className="items-center min-h-screen justify-center flex flex-col gap-4">
               <a
                 href="#videos"
@@ -202,24 +202,78 @@ export default function Home() {
                 alt="Model"
                 width={800}
                 height={600}
-                      loading="eager" // disables lazy loading
-
+                loading="eager" // disables lazy loading
               />
             </div>
             <div className="">
               {" "}
-              <Image src="/images/63.webp" alt="01" height={700} width={900}       loading="eager" // disables lazy loading
- />
+              <Image
+                src="/images/25.webp"
+                alt="01"
+                height={700}
+                width={900}
+                loading="eager" // disables lazy loading
+              />
             </div>
             <div className=" ">
               {" "}
-              <Image src="/images/61.webp" alt="01" height={700} width={900}       loading="eager" // disables lazy loading
- />
+              <Image
+                src="/images/61.webp"
+                alt="01"
+                height={700}
+                width={900}
+                loading="eager" // disables lazy loading
+              />
+            </div>
+             <div className=" ">
+              {" "}
+              <Image
+                src="/images/27.webp"
+                alt="01"
+                height={700}
+                width={900}
+                loading="eager" // disables lazy loading
+              />
+            </div>
+             <div className=" ">
+              {" "}
+              <Image
+                src="/images/29.webp"
+                alt="01"
+                height={700}
+                width={900}
+                loading="eager" // disables lazy loading
+              />
+            </div>
+             <div className=" ">
+              {" "}
+              <Image
+                src="/images/63.webp"
+                alt="01"
+                height={700}
+                width={900}
+                loading="eager" // disables lazy loading
+              />
+            </div>
+             <div className=" ">
+              {" "}
+              <Image
+                src="/images/26.webp"
+                alt="01"
+                height={700}
+                width={900}
+                loading="eager" // disables lazy loading
+              />
             </div>
             <div className=" ">
               {" "}
-              <Image src="/images/62.webp" alt="01" height={700} width={900}       loading="eager" // disables lazy loading
-/>
+              <Image
+                src="/images/62.webp"
+                alt="01"
+                height={700}
+                width={900}
+                loading="eager" // disables lazy loading
+              />
             </div>
           </div>
           {/* <CurtainsPolaroids /> */}
