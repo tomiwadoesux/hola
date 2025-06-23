@@ -113,9 +113,9 @@ export default function Home() {
                     <path
                       d="M4.22904 12.2711L11.7715 4.7286M11.7715 4.7286H5.17185M11.7715 4.7286V11.3283"
                       stroke="white"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                    strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </div>
