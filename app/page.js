@@ -36,7 +36,7 @@ export default function Home() {
               href="mailto:ayotomiwawaledurojaye@gmail.com"
               className="rounded-3xl border px-4 text-base py-2 border-white text-white hover:bg-white hover:text-black transition-colors duration-300 text-center"
             >
-              Let's Connect
+              {`Let's Connect`}
             </a>
           </div>
           <div className=" px-8 fixed flex flex-col gap-2 md:flex-row justify-between z-50 bottom-11 ">
@@ -52,7 +52,8 @@ export default function Home() {
           <div className="bg-image2  w-full h-[100vh] lg:w-1/2 lg:h-full ">
             <div className="items-center min-h-screen justify-center flex flex-col gap-4">
               <h4 className="self-center text-2xl  text-center">
-                Height: 182.88cm / 6'0"
+              {`Height: 182.88cm / 6'0"`}
+         
               </h4>
               <h4 className="self-center text-2xl  text-center">
                 Waist: 82.5cm
