@@ -1,0 +1,122 @@
+// data/models.js
+export const imgs = [
+  {
+    id: "1",
+    coverImage: "/images/77.webp",
+    images: ["/images/02.webp", "/images/43.webp", "/images/44.webp", "/images/66.webp", "/images/73.webp", "/images/95.webp", "/images/108.webp"],
+    alt: "Akinwale Olaoluwa",
+    description: "A shoot of Momamia",
+    for: "TFP with JACK HERRON",
+    shout: "JACK HERRON",
+    shoutLink: "https://www.instagram.com/jack.herron.photography/",
+  },
+  {
+    id: "2",
+    coverImage: "/images/03.webp",
+    images: ["/images/05.webp", "/images/100.webp", "/images/113.webp", "/images/117.webp"],
+    alt: "Akinwale Olaoluwa",
+    description: "A shoot of Momamia",
+    for: "Ola For MHD",
+    shout: "MHD",
+    shoutLink: "https://www.instagram.com/mentalhealthdept/",
+  },
+  {
+    id: "3",
+    coverImage: "/images/11.webp",
+    images: ["/images/07.webp", "/images/08.webp", "/images/09.webp", "/images/10.webp"],
+    alt: "Akinwale Olaoluwa",
+    description: "A shoot of Momamia",
+    for: "TFP with DAPSHOOTER ",
+    shout: "DAP SHOOTER",
+    shoutLink: "https://www.instagram.com/dapshooter/",
+  },
+  {
+    id: "4",
+    coverImage: "/images/18.webp",
+    images: ["/images/19.webp", "/images/81.webp", "/images/159.webp", "/images/107.webp", "/images/158.webp", "/images/17.webp","/images/16.webp"],
+    alt: "Akinwale Olaoluwa",
+    description: "A shoot of Momamia",
+    for: "OLA for VERLIA JEWELRIES",
+    shout: "VERLIA JEWELRIES",
+    shoutLink: "https://www.instagram.com/v3rlia/?hl=en",
+  },
+  {
+    id: "5",
+    coverImage: "/images/133.webp",
+    images: ["/images/129.webp", "/images/131.webp", "/images/135.webp", "/images/131.webp", "/images/149.webp", "/images/141.webp", "/images/148.webp", "/images/147.webp", "/images/139.webp", "/images/150.webp", "/images/154.webp" ],
+    alt: "Akinwale Olaoluwa",
+    description: "A shoot of Momamia",
+    for: "OLA for ART OF FOOTBALL ",
+    shout: "ART OF FOOTBALL",
+    shoutLink: "https://www.instagram.com/art_of_football/",
+
+  },
+  {
+    id: "6",
+    coverImage: "/images/32.webp",
+    images: ["/images/31.webp", "/images/78.webp", "/images/90.webp", "/images/91.webp", "/images/124.webp", "/images/96.webp"],
+    alt: "Akinwale Olaoluwa",
+    description: "A shoot of Momamia",
+    for: "TFP with SARAAZIZI ",
+    shout: "SARAAZIZI",
+    shoutLink: "https://www.instagram.com/____saraazizi/?hl=en",
+
+  },
+  {
+    id: "7",
+    coverImage: "/images/36.webp",
+    images: [ "/images/121.webp", "/images/72.webp", "/images/97.webp", "/images/122.webp", "/images/39.webp", "/images/40.webp", "/images/84.webp", "/images/92.webp", "/images/94.webp", "/images/99.webp", "/images/106.webp"],
+    alt: "Akinwale Olaoluwa",
+    description: "A shoot of Momamia",
+    for: "ASOS MAN STYLING with JULIET",
+    shout: "STYLED BY JULIETTE",
+    shoutLink: "https://www.instagram.com/styledby.juliette/?hl=en",
+    
+  },
+  {
+    id: "8",
+    coverImage: "/images/152.webp",
+    images: ["/images/125.webp", "/images/128.webp", "/images/130.webp", "/images/134.webp", "/images/132.webp", "/images/134.webp", "/images/138.webp", "/images/143.webp", "/images/136.webp", "/images/144.webp", "/images/145.webp", "/images/146.webp", "/images/151.webp", "/images/153.webp" ],
+    alt: "Akinwale Olaoluwa",
+    description: "A shoot of Momamia",
+    for: "OLA for A COLD WALL ",
+    shout: "A COLD WALL",
+    shoutLink: "https://www.instagram.com/acoldwall/",
+
+  },
+  {
+    id: "9",
+    coverImage: "/images/46.webp",
+    images: ["/images/45.webp", "/images/47.webp", "/images/75.webp", "/images/79.webp", "/images/82.webp", "/images/101.webp", "/images/120.webp"],
+    alt: "Akinwale Olaoluwa",
+    description: "A shoot of Momamia",
+    for: "TFP with JACK HERRON",
+    shout: "JACK HERON",
+    shoutLink: "https://www.instagram.com/jack.herron.photography/",
+
+
+  },
+  {
+    id: "10",
+    coverImage: "/images/104.webp",
+    images: ["/images/49.webp", "/images/48.webp", "/images/51.webp", "/images/52.webp", "/images/68.webp", "/images/71.webp", "/images/83.webp", "/images/87.webp", "/images/88.webp", "/images/89.webp", "/images/102.webp", "/images/103.webp", "/images/50.webp"],
+    alt: "Akinwale Olaoluwa",
+    description: "A shoot of Momamia",
+    for: "TFP with JACK HERRON",
+    shout: "JACK HERON",
+    shoutLink: "https://www.instagram.com/jack.herron.photography/",
+
+
+  },
+  {
+    id: "11",
+    coverImage: "/images/53.webp",
+    images: ["/images/54.webp", "/images/55.webp", "/images/56.webp", "/images/57.webp", "/images/58.webp", "/images/70.webp", "/images/80.webp", "/images/85.webp", "/images/86.webp", "/images/105.webp"],
+    alt: "Akinwale Olaoluwa",
+    description: "A shoot of Momamia",
+    for: "OLA for SCRL GALLERY",
+    shout: "SCRL GALLERY",
+    shoutLink: "https://www.instagram.com/scrlgallery/",
+
+  },
+];

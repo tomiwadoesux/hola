@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700&family=Bebas+Neue&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FFFEFA;
+  --foreground: #101010;
+  --font-sans: 'Syne', sans-serif;
+  --font-display: 'Bebas Neue', sans-serif;
 }
 
 @theme inline {
@@ -14,21 +17,26 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ededed;
-    --foreground: #ededed;
+    --background: #EAEAEA;
+    --foreground: #EAEAEA;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Montserrat", Arial, Helvetica, sans-serif; /* Default font for body */
+  font-family: var(--font-sans);
+}
+
+/* Apply letter-spacing: 0.4px to all text except h1, h2, h3 */
+body :not(h1):not(h2):not(h3) {
+  letter-spacing: 0.4px;
 }
 
 h1,
 h2,
 h3 {
-  font-family: "IBM Plex Serif", serif; /* Specific font for headings */
+  font-family: var(--font-display);
 }
 
 .bg-image {
@@ -108,7 +116,7 @@ h3 {
 
 .bg-image3 {
   height: 100vh;
-  background-image: url("/images/33.webp");
+  background-image: url("/images/35.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -155,9 +163,53 @@ h3 {
   position: relative; /* Ensures content stays above the overlay */
   z-index: 2; /* Ensures content is above the overlay */
 }
+
+.bg-vid {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; /* Required for overlay positioning */
+}
+
+.bg-vid video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  /* Performance optimizations */
+  transform: translateZ(0);
+  will-change: transform;
+}
+.bg-vid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Instead of 100vw */
+  height: 100%; /* Instead of 100vh */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg-vid .content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  /* Add more styles as needed */
+}
+
 .bg-image5 {
   height: 100vh;
-  background-image: url("/images/38.webp");
+  background-image: url("/images/19.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -216,4 +268,69 @@ h3 {
   display: block;
   pointer-events: none;
   z-index: 20;
+}
+
+.curtain-left,
+.curtain-right {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/950358/curtain.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(1.8);
+  transition: filter 2s ease-in-out, transform 4s ease-in-out;
+}
+.curtain-open .curtain-left,
+.curtain-open .curtain-right {
+  filter: brightness(1);
+}
+.curtain-open .curtain-left {
+  transform: translate(-100%) rotate(20deg) scale(0, 2);
+}
+.curtain-open .curtain-right {
+  transform: translate(100%) rotate(-20deg) scale(0, 2);
+}
+.fade-out {
+  animation: fadeOut 1s forwards;
+}
+@keyframes fadeOut {
+  from {
+    color: black;
+    opacity: 1;
+  }
+  to {
+    color: white;
+    opacity: 0;
+  }
+}
+@keyframes groundRise {
+  from {
+    top: 133%;
+  }
+  to {
+    top: 105%;
+  }
+}
+.ground-animate {
+  animation: groundRise 6s ease-out forwards;
+}
+@keyframes tadaZoom {
+  from {
+    transform: scale(0.75);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.tada-animate {
+  animation: tadaZoom 2s 3s forwards, tadaGlow 1s 5s infinite alternate;
+  opacity: 0;
+}
+@keyframes tadaGlow {
+  from {
+    text-shadow: 0 0 10px white;
+  }
+  to {
+    text-shadow: 0 0 30px dodgerblue, 0 0 20px white, 0 0 10px white;
+  }
 }

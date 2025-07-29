@@ -39,6 +39,8 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
+//  <Component {...pageProps} />
+
   return (
     <html
       lang="en"
