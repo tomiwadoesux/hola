@@ -1,4 +1,4 @@
-import { IBM_Plex_Serif, Montserrat } from "next/font/google";
+import { IBM_Plex_Serif, Montserrat, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
 
@@ -13,6 +13,12 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "700"], // Adjust weights as needed
   variable: "--font-montserrat",
+});
+
+const bebasNeue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-bebas-neue",
 });
 
 export const metadata = {
@@ -44,7 +50,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${ibmPlexSerif.variable} ${montserrat.variable}`}
+      className={`${ibmPlexSerif.variable} ${montserrat.variable} ${bebasNeue.variable}`}
     >
       <body  className="scroll-smooth" >{children}</body>
     </html>

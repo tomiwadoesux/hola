@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700&family=Bebas+Neue&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #FFFEFA;
   --foreground: #101010;
   --font-sans: 'Syne', sans-serif;
-  --font-display: 'Bebas Neue', sans-serif;
+  --font-display: var(--font-bebas-neue), sans-serif;
 }
 
 @theme inline {
