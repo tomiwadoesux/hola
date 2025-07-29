@@ -111,7 +111,7 @@ export default function Hero() {
                   alt="Hmm"
                   width={800}
                   height={800}
-                  className="object-cover"
+                  className="object-cover bg-black"
                 />
               </div>
               <div className=" w-[25%] flex flex-col gap-4 self-center ">
@@ -120,21 +120,21 @@ export default function Hero() {
                   alt="Hmm"
                   width={800}
                   height={800}
-                  className="object-cover aspect-square w-40"
+                  className="object-cover bg-black aspect-square w-40"
                 />
                 <Image
                   src="/images/69.webp"
                   alt="Hmm"
                   width={800}
                   height={800}
-                  className="object-cover aspect-square w-40"
+                  className="object-cover bg-black aspect-square w-40"
                 />
                 <Image
                   src="/images/44.webp"
                   alt="Hmm"
                   width={800}
                   height={800}
-                  className="object-cover aspect-square w-40"
+                  className="object-cover bg-black aspect-square w-40"
                 />
               </div>
             </div>
@@ -486,7 +486,7 @@ export default function Hero() {
               alt="Hmm"
               width={800}
               height={800}
-              className="object-cover"
+              className="object-cover bg-black"
             />
           </div>
           <div className=" w-[15%] flex flex-col gap-4 self-center ">
@@ -495,21 +495,21 @@ export default function Hero() {
               alt="Hmm"
               width={800}
               height={800}
-              className="object-cover aspect-square w-40"
+              className="object-cover aspect-square w-40 bg-black"
             />
             <Image
               src="/images/69.webp"
               alt="Hmm"
               width={800}
               height={800}
-              className="object-cover aspect-square w-40"
+              className="object-cover aspect-square w-40 bg-black"
             />
             <Image
               src="/images/44.webp"
               alt="Hmm"
               width={800}
               height={800}
-              className="object-cover aspect-square w-40"
+              className="object-cover aspect-square w-40 bg-black"
             />
           </div>
         </div>
