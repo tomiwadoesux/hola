@@ -21,6 +21,9 @@ export default function Home() {
     ssr: false,
   });
 
+  // Add this constant for the root margin
+  const PRELOAD_MARGIN = "200%" // Adjust this value to start loading earlier/later
+
   // Refs for the polaroids animation
   const polaroidsTextRef = useRef(null);
   const polaroidsContainerRef = useRef(null);
@@ -28,6 +31,9 @@ export default function Home() {
   const imagesContainerRef = useRef(null);
   const polaroidsGridRef = useRef(null);
   const imagesGridRef = useRef(null);
+
+  // Add useRef for the videos container
+  const videosContainerRef = useRef(null);
 
   // Example video list
   const videoList = [
@@ -161,6 +167,37 @@ export default function Home() {
     };
   }, []);
 
+  // Add this useEffect for preloading
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: `0px 0px ${PRELOAD_MARGIN} 0px`, // Load when within 200% of viewport
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Start loading all videos in the container
+          const videos = entry.target.querySelectorAll('video');
+          videos.forEach(video => {
+            if (video.dataset.src) {
+              video.src = video.dataset.src;
+              delete video.dataset.src;
+            }
+          });
+          observer.unobserve(entry.target); // Stop observing once loading starts
+        }
+      });
+    }, options);
+
+    if (videosContainerRef.current) {
+      observer.observe(videosContainerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <SmoothScroll>
       <section className="">
@@ -279,7 +316,10 @@ export default function Home() {
           />
         </div>
         <div className="gap-3 pb-8 flex-col flex">
-          <div className="px-5 md:px-16 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-5 md:gap-x-16 gap-y-20 min-h-screen relative z-10">
+          <div 
+            ref={videosContainerRef} 
+            className="px-5 md:px-16 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-5 md:gap-x-16 gap-y-20 min-h-screen relative z-10"
+          >
             {videoList.map((video, idx) => (
               <LazyVideo
                 key={idx}

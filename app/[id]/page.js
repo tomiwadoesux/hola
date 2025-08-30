@@ -1,17 +1,26 @@
 "use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { imgs } from "../../data/imgs";
-import { gsap } from "gsap";
 import SmoothScroll from "@/components/SmoothScroll";
+import { imgs } from "@/data/imgs";
 
 export default function ProjectId({ params }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const [project, setProject] = useState(null);
   const modalRef = useRef(null);
   const clickedImageRef = useRef(null);
   const router = useRouter();
+  const { id } = React.use(params); // Unwrap the params Promise
+
+  useEffect(() => {
+    if (id) {
+      const projectData = imgs.find((item) => item.id === id);
+      setProject(projectData);
+    }
+  }, [id]);
 
   const openModal = (index, event) => {
     setSelectedIndex(index);
@@ -27,14 +36,43 @@ export default function ProjectId({ params }) {
   };
 
   const handleNameClick = () => {
-    // Check if there's a previous page in history
-    if (window.history.length > 1) {
-      router.back();
-    } else {
-      // No previous page, go to home/first page
-      router.push("/"); // Change '/' to your actual home page route
-    }
+    router.push("/#photos");
+
+    // Small timeout to allow navigation and then scroll to photos section
+    setTimeout(() => {
+      const photosSection = document.getElementById("photos");
+      if (photosSection) {
+        const elementPosition = photosSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - window.innerHeight / 2;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
   };
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      sessionStorage.setItem("scroll-" + pathname, window.scrollY.toString());
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      sessionStorage.setItem("scroll-" + pathname, window.scrollY.toString());
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    const saved = sessionStorage.getItem("scroll-" + pathname);
+    if (saved) {
+      window.scrollTo(0, parseInt(saved, 10));
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (modalOpen) {
@@ -48,33 +86,33 @@ export default function ProjectId({ params }) {
     };
   }, [modalOpen]);
 
-  // Get the project by id (params.id is string, imgs ids are string)
-  const project = imgs.find((item) => item.id === params.id);
+  // Add loading state
   if (!project) {
-    return <div>Project not found</div>;
+    return <div>Loading...</div>;
   }
+
   // Combine coverImage and images for display
   const allImages = [project.coverImage, ...(project.images || [])];
 
   return (
     <SmoothScroll>
-      <section className="pb-20 pt-44 md:pt-60  px-5 md:px-14">
+      <section className="pb-20 pt-40 md:pt-54 lg:pt-60  px-5 md:px-14 relative">
         <div
-          className="absolute pt-4 lg:bottom-5 z-10 top-6  text-nowrap sm:hidden md:block left-10 lg:left-12 text-[#000] opacity-60 md:text-2xl lg:text-2xl cursor-pointer hover:opacity-80 transition-opacity"
+          className="absolute pt-4 lg:bottom-5 z-10 top-6  text-nowrap sm:hidden md:block left-5 md:left-14 lg:left-14 text-[#000] opacity-60 md:text-2xl lg:text-2xl cursor-pointer hover:opacity-80 transition-opacity"
           onClick={handleNameClick}
         >
-          <h1 className="pl-3">ÀKÍNWÁLÉ </h1>
-          <h1>ỌLÀÓLÚWÀ </h1>
+          <h1 className="pl-3 text-2xl md:text-4xl lg:text-3xl ">ÀKÍNWÁLÉ </h1>
+          <h1 className="text-2xl md:text-4xl lg:text-3xl ">ỌLÀÓLÚWÀ </h1>
         </div>
 
-        <div className="absolute pt-4 px-5 md:px-12 w-100 lg:bottom-5 z-10 top-6 -z-10 sm:right-5 md:right-3  text-[#343434] text-xs ">
+        <div className="absolute pt-4 px-5 md:px-12 w-100 lg:bottom-5 pointer-events-none z-10 top-6 -z-10 sm:right-5 md:right-3 text-[#343434] text-xs">
           <div className="flex gap-2 flex-col">
             <div>
-              <h1 className=" text-xl md:text-3xl  text-right  ">
-                {project.for}
-              </h1>
+              <h1 className="text-xl md:text-3xl text-right">{project.for}</h1>
             </div>
-            <div className="justify-items-end">
+            <div className="justify-items-end text-right pointer-events-auto">
+              {" "}
+              {/* Add pointer-events-auto here */}
               {/* Brand section */}
               {project.brand && (
                 <div className="flex self-end flex-row">
@@ -129,7 +167,7 @@ export default function ProjectId({ params }) {
 
               {/* Photographer section */}
               {project.photographer && (
-                <div className="flex justify-items-end flex-row">
+                <div className="flex text-right justify-items-end flex-row">
                   <a
                     href={project.photographerLink || "#"}
                     className="text-sm  transition-opacity block mt-0 group"
@@ -158,7 +196,7 @@ export default function ProjectId({ params }) {
 
         <div>
           {/* Main image */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-y-12  lg:gap-y-24 gap-x-5 md:gap-x-14">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-y-5  md:gap-y-14  lg:gap-y-14 gap-x-5 md:gap-x-14">
             {allImages.map((img, index) => (
               <div
                 key={index}

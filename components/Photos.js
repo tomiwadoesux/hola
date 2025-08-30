@@ -49,7 +49,6 @@ export default function Photos() {
 
   return (
     <div className="px-5 md:px-16 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-5 md:gap-x-16 gap-y-20 min-h-screen relative z-10 content-end">
-      
       {shuffledImgs.map((project, index) => (
         <Link key={index} href={`/${project.id}`} className="block group">
           <div
@@ -71,7 +70,19 @@ export default function Photos() {
               }`}
             />
           </div>
-          <h5 className="self-start z-20 text-xs text-[#464646] mt-2 underline underline-offset-2"> {project.for}</h5>
+          {/* <h5 className="self-start z-20 text-xs text-[#464646] mt-2 underline underline-offset-2"> {project.for}</h5> */}
+          <h5 className="text-xs pt-2 text-[#343434]">
+            <span
+              className=" underline underline-offset-4 lg:no-underline
+        relative
+        after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full
+        after:bg-[#343434] after:origin-left after:scale-x-0 text-xs text-[#464646]
+        group-hover:after:scale-x-100 after:transition-transform after:duration-300
+      "
+            >
+              {project.for}
+            </span>
+          </h5>
         </Link>
       ))}
     </div>

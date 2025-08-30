@@ -2,22 +2,23 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <div className="h-[100vh] md:h-[105vh] w-[100vw]">
-      <div className="absolute  flex flex-col gap-1 md:flex-col justify-between text-[#343434] right-16 top-7 md:top-7 ">
+      <div className="absolute  flex flex-col gap-1 md:flex-col justify-between text-[#343434] right-12 md:right-16 top-4 md:top-7 ">
         <a href="mailto:Olaoluwaakinwale89@gmail.com" className="group">
-          <h5 className="text-xs md:text-sm text-[#343434]">
+          <h5 className="text-xs text-right md:text-sm text-[#343434]">
             <span
               className="
         relative
         after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full
         after:bg-[#343434] after:origin-left after:scale-x-0
         group-hover:after:scale-x-100 after:transition-transform after:duration-300
+
       "
             >
               Olaoluwaakinwale89@gmail.com
             </span>
           </h5>
         </a>
-        <h5 className="text-[10px] text-left md:text-xs text-xs">
+          <h5 className="text-xs md:text-sm text-[#343434]">
           Based in Manchester, United Kingdom
         </h5>
       </div>
@@ -154,7 +155,7 @@ export default function Hero() {
               </h5>
               <h5 className="text-base md:text-lg">Waist: 82.5cm</h5>
               <h5 className="text-base md:text-lg">Chest: 91.4cm</h5>
-              <h5 className="text-base md:text-lg">Leg: 83.82cm</h5>``
+              <h5 className="text-base md:text-lg">Leg: 83.82cm</h5>
               <h5 className="text-base md:text-lg">Eye Color: Brown</h5>
               <h5 className="text-base md:text-lg">Hair Color: Dark Brown</h5>
               <h5 className="text-base md:text-lg">Suit Size: 38</h5>
