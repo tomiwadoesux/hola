@@ -1,11 +1,22 @@
 @import "tailwindcss";
 
+/* Add this at the top if you have the font file */
+@font-face {
+  font-family: 'Cossette Texte';
+  src: url('/fonts/CossetteTexte-Regular.woff2') format('woff2'),
+       url('/fonts/CossetteTexte-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --background: #FFFEFA;
   --foreground: #101010;
-  --font-sans: 'Syne', sans-serif;
+  --font-sans: 'Bebas Neue', sans-serif; /* 👈 replaced Syne */
+  --font-bebas-neue: 'Bebas Neue'; 
   --font-display: var(--font-bebas-neue), sans-serif;
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -32,10 +43,17 @@ body :not(h1):not(h2):not(h3) {
   letter-spacing: 0.4px;
 }
 
-h1,
-h2,
+h1  {
+  font-family: var(--font-display);
+}
+h2
 h3 {
   font-family: var(--font-display);
+}
+
+h4,
+h5 {
+  font-family: 'Cossette Texte', sans-serif;
 }
 
 .bg-image {

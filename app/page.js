@@ -37,7 +37,6 @@ export default function Home() {
     { src: "/videos/08.mov", poster: "/images/22.web" },
     { src: "/videos/10.mov", poster: "/images/22.web" },
     { src: "/videos/09.mov", poster: "/images/22.web" },
-
   ];
 
   // Polaroids scroll effect
@@ -297,9 +296,18 @@ export default function Home() {
         {/* Contact Section */}
         <div className="flex flex-col pt-10 pb-4 gap-1 md:gap-5 px-5 md:px-16">
           <div className="flex pb-0 lg:pb-2 self-end md:self-start">
-            <a href="mailto:Olaoluwaakinwale89@gmail.com">
-              <h5 className="text-xs md:text-sm text-[#343434] underline underline-offset-3">
-                Olaoluwaakinwale89@gmail.com
+            <a href="mailto:Olaoluwaakinwale89@gmail.com" className="group">
+              <h5 className="text-xs md:text-sm text-[#343434]">
+                <span
+                  className="
+        relative
+        after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full
+        after:bg-[#343434] after:origin-left after:scale-x-0
+        group-hover:after:scale-x-100 after:transition-transform after:duration-300
+      "
+                >
+                  Olaoluwaakinwale89@gmail.com
+                </span>
               </h5>
             </a>
           </div>

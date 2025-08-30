@@ -3,29 +3,24 @@ export default function Hero() {
   return (
     <div className="h-[100vh] md:h-[105vh] w-[100vw]">
       <div className="absolute  flex flex-col gap-1 md:flex-col justify-between text-[#343434] right-16 top-7 md:top-7 ">
-        <a
-          href="mailto:Olaoluwaakinwale89@gmail.com"
-          className="text-base  text-[#343434] "
-        >
-          <h5 className="text-xs md:text-sm text-left   text-[#343434] underline underline-offset-3">
-            Olaoluwaakinwale89@gmail.com
+        <a href="mailto:Olaoluwaakinwale89@gmail.com" className="group">
+          <h5 className="text-xs md:text-sm text-[#343434]">
+            <span
+              className="
+        relative
+        after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full
+        after:bg-[#343434] after:origin-left after:scale-x-0
+        group-hover:after:scale-x-100 after:transition-transform after:duration-300
+      "
+            >
+              Olaoluwaakinwale89@gmail.com
+            </span>
           </h5>
         </a>
         <h5 className="text-[10px] text-left md:text-xs text-xs">
           Based in Manchester, United Kingdom
         </h5>
       </div>
-      {/* <div className="flex  relative gap-3 pl-16   pt-7 w-[40%] flex-row">
-        <h5 className="text-[10px] text-center  text-[#343434] md:text-sm text-xs">
-          Polaroids
-        </h5>
-        <h5 className="text-[10px] text-center text-[#343434] md:text-sm text-xs">
-          Photos
-        </h5>
-        <h5 className="text-[10px] text-center text-[#343434] md:text-sm text-xs">
-          Videos
-        </h5>
-      </div> */}
 
       <div className="flex lg:hidden flex-col absolute left-5 md:left-16 top-24 md:top-24 gap-3 md:gap-1  w-[85%] md:w-[85%] lg:w-[40%]">
         <div className="flex flex-col ">
@@ -44,7 +39,7 @@ export default function Hero() {
               href="https://www.instagram.com/olaoluwa.ak"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:opacity-70 transition-opacity"
+              className="transition-opacity"
             >
               <svg
                 width="18"
@@ -64,12 +59,11 @@ export default function Hero() {
               </svg>
             </a>
             <div className="">
-              {" "}
               <a
                 href="https://www.tiktok.com/@olaoluwa.ak"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:opacity-70 transition-opacity"
+                className="transition-opacity"
               >
                 <svg
                   width="22"
@@ -160,115 +154,53 @@ export default function Hero() {
               </h5>
               <h5 className="text-base md:text-lg">Waist: 82.5cm</h5>
               <h5 className="text-base md:text-lg">Chest: 91.4cm</h5>
-              <h5 className="text-base md:text-lg">Leg: 83.82cm</h5>
+              <h5 className="text-base md:text-lg">Leg: 83.82cm</h5>``
               <h5 className="text-base md:text-lg">Eye Color: Brown</h5>
               <h5 className="text-base md:text-lg">Hair Color: Dark Brown</h5>
               <h5 className="text-base md:text-lg">Suit Size: 38</h5>
             </div>
-            <div className="text-left flex flex-col gap-3  underline underline-offset-3 pt-5 text-[#343434] ">
-              <div
-                className="flex flex-row self-end gap-1 cursor-pointer hover:opacity-70 transition-opacity"
-                onClick={() => {
-                  const element = document.getElementById("Polaroids");
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
-                <h5 className="text-base md:text-xl">Polaroids</h5>
-                <svg
-                  width="12"
-                  height="13"
-                  viewBox="0 0 16 17"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="self-center"
+            <div className="text-left flex flex-col gap-3 pt-5 text-[#343434]">
+              {[
+                { label: "Polaroids", id: "Polaroids" },
+                { label: "Photos", id: "photos" },
+                { label: "Videos", id: "videos" },
+              ].map((item) => (
+                <div
+                  key={item.id}
+                  className="flex self-end flex-row gap-1 cursor-pointer group"
+                  onClick={() => {
+                    const element = document.getElementById(item.id);
+                    if (element) element.scrollIntoView({ behavior: "smooth" });
+                  }}
                 >
-                  <path
-                    d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
-                    stroke="#343434"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
-                    stroke="#343434"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
+                  <h5 className="text-base md:text-xl relative overflow-hidden group">
+                    <span
+                      className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full 
+      after:bg-[#343434] after:origin-left after:scale-x-0 
+      group-hover:after:scale-x-100 after:transition-transform after:duration-300"
+                    >
+                      {item.label}
+                    </span>
+                  </h5>
 
-              <div
-                className="flex self-end flex-row gap-1 cursor-pointer hover:opacity-70 transition-opacity"
-                onClick={() => {
-                  const element = document.getElementById("photos");
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
-                <h5 className="text-base md:text-xl">Photos</h5>
-                <svg
-                  width="12"
-                  height="13"
-                  viewBox="0 0 16 17"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="self-center"
-                >
-                  <path
-                    d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
-                    stroke="#343434"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
-                    stroke="#343434"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <div
-                className="flex self-end flex-row gap-1 cursor-pointer hover:opacity-70 transition-opacity"
-                onClick={() => {
-                  const element = document.getElementById("videos");
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
-                <h5 className="text-base md:text-xl">Videos</h5>
-                <svg
-                  width="12"
-                  height="13"
-                  viewBox="0 0 16 17"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="self-center"
-                >
-                  <path
-                    d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
-                    stroke="#343434"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
-                    stroke="#343434"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
+                  <svg
+                    width="12"
+                    height="13"
+                    viewBox="0 0 16 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="self-center"
+                  >
+                    <path
+                      d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
+                      stroke="#343434"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -292,7 +224,7 @@ export default function Hero() {
                   href="https://www.instagram.com/olaoluwa.ak"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:opacity-70 transition-opacity"
+                  className="transition-opacity"
                 >
                   <svg
                     width="18"
@@ -313,12 +245,11 @@ export default function Hero() {
                 </a>
               </div>
               <div className="">
-                {" "}
                 <a
                   href="https://www.tiktok.com/@olaoluwa.ak"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:opacity-70 transition-opacity"
+                  className="transition-opacity"
                 >
                   <svg
                     width="22"
@@ -364,89 +295,31 @@ export default function Hero() {
                 <h5 className="text-base md:text-lg">Hair Color: Dark Brown</h5>
                 <h5 className="text-base md:text-lg">Suit Size: 38</h5>
               </div>
-              <div className="text-left flex flex-col gap-2 underline underline-offset-2  pt-5 text-[#343434] ">
-                <div className="flex self-end flex-row gap-1">
+              <div className="text-left flex flex-col gap-3 pt-5 text-[#343434]">
+                {[
+                  { label: "Polaroids", id: "Polaroids" },
+                  { label: "Photos", id: "photos" },
+                  { label: "Videos", id: "videos" },
+                ].map((item) => (
                   <div
-                    className="flex self-end flex-row gap-1 cursor-pointer hover:opacity-70 transition-opacity"
+                    key={item.id}
+                    className="flex self-end flex-row gap-1 cursor-pointer group"
                     onClick={() => {
-                      const element = document.getElementById("Polaroids");
-                      if (element) {
+                      const element = document.getElementById(item.id);
+                      if (element)
                         element.scrollIntoView({ behavior: "smooth" });
-                      }
                     }}
                   >
-                    <h5 className="text-base md:text-lg">Polaroids</h5>
-                    <svg
-                      width="12"
-                      height="13"
-                      viewBox="0 0 16 17"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="self-center"
-                    >
-                      <path
-                        d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
-                        stroke="#343434"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
-                        stroke="#343434"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                </div>
+                    <h5 className="text-base md:text-xl relative overflow-hidden">
+                      <span
+                        className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full 
+                      after:bg-[#343434] after:origin-left after:scale-x-0 
+                      group-hover:after:scale-x-100 after:transition-transform after:duration-300"
+                      >
+                        {item.label}
+                      </span>
+                    </h5>
 
-                <div
-                  className="flex self-end flex-row gap-1 cursor-pointer hover:opacity-70 transition-opacity"
-                  onClick={() => {
-                    const element = document.getElementById("photos");
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                >
-                  <h5 className="text-base md:text-lg">Photos</h5>
-                  <svg
-                    width="12"
-                    height="13"
-                    viewBox="0 0 16 17"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="self-center"
-                  >
-                    <path
-                      d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
-                      stroke="#343434"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
-                      stroke="#343434"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-                <div className="flex self-end flex-row gap-1">
-                  <div
-                    className="flex self-end flex-row gap-1 cursor-pointer hover:opacity-70 transition-opacity"
-                    onClick={() => {
-                      const element = document.getElementById("videos");
-                      if (element) {
-                        element.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
-                  >
-                    <h5 className="text-base md:text-lg">Videos</h5>
                     <svg
                       width="12"
                       height="13"
@@ -462,55 +335,47 @@ export default function Hero() {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
-                      <path
-                        d="M8 2L8 15M8 15L14 9.3125M8 15L2 9.3125"
-                        stroke="#343434"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
                     </svg>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="hidden lg:block">
-        <div className="flex absolute bottom-64 md:bottom-4 right-16 -z-10 flex-row-reverse gap-4">
-          <div className="  aspect-[2/3] w-[50%] md:w-[40%] bg-black ">
-            <Image
-              src="/images/67.webp"
-              alt="Hmm"
-              width={800}
-              height={800}
-              className="object-cover bg-black"
-            />
-          </div>
-          <div className=" w-[15%] flex flex-col gap-4 self-center ">
-            <Image
-              src="/images/49.webp"
-              alt="Hmm"
-              width={800}
-              height={800}
-              className="object-cover aspect-square w-40 bg-black"
-            />
-            <Image
-              src="/images/69.webp"
-              alt="Hmm"
-              width={800}
-              height={800}
-              className="object-cover aspect-square w-40 bg-black"
-            />
-            <Image
-              src="/images/44.webp"
-              alt="Hmm"
-              width={800}
-              height={800}
-              className="object-cover aspect-square w-40 bg-black"
-            />
+        <div className="hidden lg:block">
+          <div className="flex absolute bottom-64 md:bottom-4 right-16 -z-10 flex-row-reverse gap-4">
+            <div className="  aspect-[2/3] w-[50%] md:w-[40%] bg-black ">
+              <Image
+                src="/images/67.webp"
+                alt="Hmm"
+                width={800}
+                height={800}
+                className="object-cover bg-black"
+              />
+            </div>
+            <div className=" w-[15%] flex flex-col gap-4 self-center ">
+              <Image
+                src="/images/49.webp"
+                alt="Hmm"
+                width={800}
+                height={800}
+                className="object-cover aspect-square w-40 bg-black"
+              />
+              <Image
+                src="/images/69.webp"
+                alt="Hmm"
+                width={800}
+                height={800}
+                className="object-cover aspect-square w-40 bg-black"
+              />
+              <Image
+                src="/images/44.webp"
+                alt="Hmm"
+                width={800}
+                height={800}
+                className="object-cover aspect-square w-40 bg-black"
+              />
+            </div>
           </div>
         </div>
       </div>
