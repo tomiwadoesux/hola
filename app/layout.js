@@ -1,5 +1,6 @@
 import { IBM_Plex_Serif, Montserrat, Bebas_Neue } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 
 const ibmPlexSerif = IBM_Plex_Serif({
@@ -45,14 +46,12 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
-//  <Component {...pageProps} />
-
   return (
-    <html
-      lang="en"
-      className={`${ibmPlexSerif.variable} ${montserrat.variable} ${bebasNeue.variable}`}
-    >
-      <body  className="scroll-smooth" >{children}</body>
+    <html lang="en">
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
