@@ -1,7 +1,21 @@
+"use client";
 import Image from "next/image";
+import { useEffect } from "react";
+
 export default function Hero() {
+  useEffect(() => {
+    // Optional: lock viewport height for iPhones with custom class
+    const setHeight = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+    setHeight();
+    window.addEventListener("resize", setHeight);
+    return () => window.removeEventListener("resize", setHeight);
+  }, []);
+
   return (
-    <div className="h-[100vh] md:h-[105vh] w-[100vw]">
+    <div className="relative flex flex-col lg:flex-row w-full min-h-[calc(var(--vh,1vh)*100)]">
       <div className="absolute  flex flex-col gap-1 md:flex-col justify-between text-[#343434] right-12 md:right-16 top-4 md:top-7 ">
         <a href="mailto:Olaoluwaakinwale89@gmail.com" className="group">
           <h5 className="text-xs text-right md:text-sm text-[#343434]">

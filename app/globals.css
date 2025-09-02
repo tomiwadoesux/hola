@@ -32,6 +32,37 @@
   }
 }
 
+@layer utilities {
+  /* iPhone SE (1st Gen: 320x568) */
+  @media screen and (device-width: 320px) and (device-height: 568px) {
+    .h-iphone {
+      height: 125vh;
+    }
+  }
+
+  /* iPhone 6/7/8 and SE (2nd/3rd Gen: 375x667) */
+  @media screen and (device-width: 375px) and (device-height: 667px) {
+    .h-iphone {
+      height: 125vh;
+    }
+  }
+
+  /* iPhone X/XS/11 Pro (375x812) */
+  @media screen and (device-width: 375px) and (device-height: 812px) {
+    .h-iphone {
+      height: 125vh;
+    }
+  }
+
+  /* fallback: all other mobiles */
+  @media (max-width: 767px) {
+    .h-mobile {
+      height: 100vh;
+    }
+  }
+}
+
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -308,6 +339,7 @@ h5 {
 .fade-out {
   animation: fadeOut 1s forwards;
 }
+
 @keyframes fadeOut {
   from {
     color: black;

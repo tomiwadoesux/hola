@@ -96,7 +96,7 @@ export default function ProjectId({ params }) {
 
   return (
     <SmoothScroll>
-      <section className="pb-20 pt-40 md:pt-54 lg:pt-60  px-5 md:px-14 relative">
+      <section className="pb-20 pt-44 md:pt-54 lg:pt-60  px-5 md:px-14 relative">
         <div
           className="absolute pt-4 lg:bottom-5 z-10 top-6  text-nowrap sm:hidden md:block left-5 md:left-14 lg:left-14 text-[#000] opacity-60 md:text-2xl lg:text-2xl cursor-pointer hover:opacity-80 transition-opacity"
           onClick={handleNameClick}
@@ -105,33 +105,26 @@ export default function ProjectId({ params }) {
           <h1 className="text-2xl md:text-4xl lg:text-3xl ">ỌLÀÓLÚWÀ </h1>
         </div>
 
-        <div className="absolute pt-4 px-5 md:px-12 w-100 lg:bottom-5 pointer-events-none z-10 top-6 -z-10 sm:right-5 md:right-3 text-[#343434] text-xs">
-          <div className="flex gap-2 flex-col">
-            <div>
+        <div className="absolute pt-4 px-5 md:px-12 w-100 lg:bottom-5 pointer-events-none z-10 top-6  sm:right-5 md:right-3 text-[#343434] text-xs">
+          <div className="flex gap-2 items-end flex-col">
+            <div className="w-50 md:w-100">
               <h1 className="text-xl md:text-3xl text-right">{project.for}</h1>
             </div>
-            <div className="justify-items-end text-right pointer-events-auto">
-              {" "}
-              {/* Add pointer-events-auto here */}
+            <div className="justify-items-end text-right pointer-events-auto w-full">
               {/* Brand section */}
               {project.brand && (
-                <div className="flex self-end flex-row">
+                <div className="flex justify-end flex-row">
                   <a
                     href={project.brandLink || "#"}
-                    className="text-sm  transition-opacity block mt-0 group"
+                    className="text-sm transition-opacity block mt-0 group text-right"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <h5 className="text-xs md:text-sm">
-                      <span>Brand:</span>{" "}
-                      <span
-                        className="
-              relative
-              after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full
+                    <h5 className="text-xs md:text-sm flex flex-row justify-end gap-1">
+                      <span className="whitespace-nowrap">Brand: </span>
+                      <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full 
               after:bg-[#343434] after:origin-left after:scale-x-0
-              group-hover:after:scale-x-100 after:transition-transform after:duration-300
-            "
-                      >
+              group-hover:after:scale-x-100 after:transition-transform after:duration-300">
                         {project.brand}
                       </span>
                     </h5>
@@ -141,23 +134,18 @@ export default function ProjectId({ params }) {
 
               {/* Stylist section */}
               {project.stylist && (
-                <div className="flex self-end flex-row">
+                <div className="flex justify-end flex-row">
                   <a
                     href={project.stylistLink || "#"}
-                    className="text-sm  transition-opacity block mt-0 group"
+                    className="text-sm transition-opacity block mt-0 group text-right"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <h5 className="text-xs md:text-sm">
-                      <span>Stylist:</span>{" "}
-                      <span
-                        className="
-              relative
-              after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full
+                    <h5 className="text-xs md:text-sm flex flex-row justify-end gap-1">
+                      <span className="whitespace-nowrap">Stylist: </span>
+                      <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full 
               after:bg-[#343434] after:origin-left after:scale-x-0
-              group-hover:after:scale-x-100 after:transition-transform after:duration-300
-            "
-                      >
+              group-hover:after:scale-x-100 after:transition-transform after:duration-300">
                         {project.stylist}
                       </span>
                     </h5>
@@ -167,23 +155,18 @@ export default function ProjectId({ params }) {
 
               {/* Photographer section */}
               {project.photographer && (
-                <div className="flex text-right justify-items-end flex-row">
+                <div className="flex justify-end flex-row">
                   <a
                     href={project.photographerLink || "#"}
-                    className="text-sm  transition-opacity block mt-0 group"
+                    className="text-sm transition-opacity block mt-0 group text-right"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <h5 className="text-xs md:text-sm">
-                      <span>Photographer:</span>{" "}
-                      <span
-                        className="
-              relative
-              after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full
+                    <h5 className="text-xs md:text-sm flex flex-row justify-end gap-1">
+                      <span className="whitespace-nowrap">Photographer: </span>
+                      <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full 
               after:bg-[#343434] after:origin-left after:scale-x-0
-              group-hover:after:scale-x-100 after:transition-transform after:duration-300
-            "
-                      >
+              group-hover:after:scale-x-100 after:transition-transform after:duration-300">
                         {project.photographer}
                       </span>
                     </h5>
