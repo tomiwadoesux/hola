@@ -299,11 +299,11 @@ export default function Home() {
         <div
           ref={imagesContainerRef}
           id="photos"
-          className="flex h-full w-full flex-col relative z-30"
+          className="flex h-full pt-2 w-full flex-col relative z-30"
         >
           <AnimatedText
             text="PHOTOS"
-            className="self-center text-[#343434] py-11 text-center text-4xl md:text-6xl lg:text-6xl"
+            className="self-center text-[#343434] py-7 md:py-11 text-center text-4xl md:text-6xl lg:text-6xl"
           />
           <div ref={imagesGridRef}>
             <Photos />

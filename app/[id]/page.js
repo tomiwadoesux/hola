@@ -96,7 +96,7 @@ export default function ProjectId({ params }) {
 
   return (
     <SmoothScroll>
-      <section className="pb-20 pt-44 md:pt-54 lg:pt-60  px-5 md:px-14 relative">
+      <section className="pb-20 pt-48 md:pt-48 lg:pt-48  px-5 md:px-14 relative">
         <div
           className="absolute pt-4 lg:bottom-5 z-10 top-6  text-nowrap sm:hidden md:block left-5 md:left-14 lg:left-14 text-[#000] opacity-60 md:text-2xl lg:text-2xl cursor-pointer hover:opacity-80 transition-opacity"
           onClick={handleNameClick}
@@ -110,7 +110,7 @@ export default function ProjectId({ params }) {
             <div className="w-50 md:w-100">
               <h1 className="text-xl md:text-3xl text-right">{project.for}</h1>
             </div>
-            <div className="justify-items-end text-right pointer-events-auto w-full">
+            <div className="justify-items-end flex flex-col gap-1.5 lg:gap-0 text-right pointer-events-auto w-full">
               {/* Brand section */}
               {project.brand && (
                 <div className="flex justify-end flex-row">
@@ -122,7 +122,7 @@ export default function ProjectId({ params }) {
                   >
                     <h5 className="text-xs md:text-sm flex flex-row justify-end gap-1">
                       <span className="whitespace-nowrap">Brand: </span>
-                      <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full 
+                      <span className=" underline-offset-2 underline lg:no-underline relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full 
               after:bg-[#343434] after:origin-left after:scale-x-0
               group-hover:after:scale-x-100 after:transition-transform after:duration-300">
                         {project.brand}
@@ -143,7 +143,7 @@ export default function ProjectId({ params }) {
                   >
                     <h5 className="text-xs md:text-sm flex flex-row justify-end gap-1">
                       <span className="whitespace-nowrap">Stylist: </span>
-                      <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full 
+                      <span className="  underline-offset-2 underline lg:no-underline relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full 
               after:bg-[#343434] after:origin-left after:scale-x-0
               group-hover:after:scale-x-100 after:transition-transform after:duration-300">
                         {project.stylist}
@@ -164,7 +164,7 @@ export default function ProjectId({ params }) {
                   >
                     <h5 className="text-xs md:text-sm flex flex-row justify-end gap-1">
                       <span className="whitespace-nowrap">Photographer: </span>
-                      <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full 
+                      <span className="  underline-offset-2 underline lg:no-underline relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full 
               after:bg-[#343434] after:origin-left after:scale-x-0
               group-hover:after:scale-x-100 after:transition-transform after:duration-300">
                         {project.photographer}
