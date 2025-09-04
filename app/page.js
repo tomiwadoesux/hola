@@ -8,6 +8,7 @@ import CurtainsPolaroids from "@/components/CurtainsPolaroids";
 import { useEffect, useState, useRef } from "react";
 import Photos from "@/components/Photos";
 import Hero from "@/components/Hero";
+import Hero2 from "@/components/Hero2";
 import LetsTalk from "@/components/lets-talk";
 import Ayotomcs from "@/components/ayotomcs";
 import { gsap } from "gsap";
@@ -201,8 +202,8 @@ export default function Home() {
   return (
     <SmoothScroll>
       <section className="">
-        <div className="h-auto">
-          <Hero />
+        <div className="">
+          <Hero2 />
         </div>
 
         {/* Polaroids Section with Animation */}
