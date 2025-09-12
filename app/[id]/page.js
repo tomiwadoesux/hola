@@ -36,22 +36,19 @@ export default function ProjectId({ params }) {
 
   const handleNameClick = () => {
     router.push("/#photos");
-
-    // Small timeout to allow navigation and then scroll to photos section
+  
+    // Wait for navigation, then scroll
     setTimeout(() => {
-      const photosSection = document.getElementById("photos");
+      const photosSection = document.getElementById("photos"); // ✅ no #
       if (photosSection) {
-        const elementPosition = photosSection.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - window.innerHeight / 2;
-
-        window.scrollTo({
-          top: offsetPosition,
+        photosSection.scrollIntoView({
           behavior: "smooth",
+          block: "center", // or "start"
         });
       }
-    }, 100);
+    }, 300); // give enough time for navigation + rendering
   };
-
+  
   const pathname = usePathname();
 
   useEffect(() => {

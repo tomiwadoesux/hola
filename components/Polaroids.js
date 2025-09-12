@@ -46,10 +46,18 @@ export default function Polaroids() {
       });
 
       if (smoothScrollContainer === window) {
-        window.scrollTo(0, scrollY);
+        const savedY = scrollY;
+      
+        // Let browser finish resetting styles before restoring scroll
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            window.scrollTo(0, savedY);
+          });
+        });
       } else {
-        smoothScrollContainer.scrollTop = scrollY; // ✅ FIXED
+        smoothScrollContainer.scrollTop = scrollY;
       }
+      
 
       document.body.removeAttribute("data-scroll-y");
     }
@@ -77,7 +85,7 @@ export default function Polaroids() {
 
       // Animate back
       gsap.to(imageElement, {
-        duration: 0.6,
+        duration: 0.4,
         rotationY: 0,
         scale: 1,
         x: 0,
@@ -116,7 +124,7 @@ export default function Polaroids() {
       const scaleValue = isMobile ? 1.5 : 1.3;
 
       gsap.to(imageElement, {
-        duration: 0.6,
+        duration: 0.4,
         rotationY: 360,
         scale: scaleValue,
         x: translateX,
