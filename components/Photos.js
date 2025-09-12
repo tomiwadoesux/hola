@@ -1,16 +1,21 @@
 "use client";
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { imgs } from "../data/imgs";
+import gsap from "gsap";
 
 export default function Photos() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(null);
   const [shuffledImgs, setShuffledImgs] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
+  const router = useRouter();
 
-  // Fisher-Yates shuffle algorithm
+  const borderBoxRef = useRef(null);
+  const underlineRefs = useRef([]);
+
+  // shuffle
   const shuffleArray = (array) => {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -20,71 +25,109 @@ export default function Photos() {
     return shuffled;
   };
 
-  const openModal = (index) => {
-    setSelectedIndex(index);
-    setModalOpen(true);
-  };
+  // detect device
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
+    setIsMobile(mediaQuery.matches);
 
-  const closeModal = () => {
-    setModalOpen(false);
-    setSelectedIndex(null);
-  };
+    const handleChange = (e) => setIsMobile(e.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
 
-  // Shuffle images on component mount
+  // shuffle on mount
   useEffect(() => {
     setShuffledImgs(shuffleArray(imgs));
   }, []);
 
+  // handle navigation with blur
+  const handleClick = (id) => {
+    setIsNavigating(true);
+    router.push(`/${id}`);
+  };
+
+  // Animate border reveal
   useEffect(() => {
-    if (modalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+    if (borderBoxRef.current) {
+      gsap.fromTo(
+        borderBoxRef.current,
+        { clipPath: "inset(0 0 0 100%)" }, // hidden from right
+        { clipPath: "inset(0 0 0 0%)", duration: 1.2, ease: "power2.out" }
+      );
     }
-    // Clean up in case the component unmounts while modal is open
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [modalOpen]);
+  }, []);
+
+  // Animate underline (mobile only, continuous loop)
+  useEffect(() => {
+    if (isMobile && underlineRefs.current.length > 0) {
+      underlineRefs.current.forEach((el) => {
+        if (!el) return;
+        gsap.fromTo(
+          el,
+          { scaleX: 0, transformOrigin: "left" },
+          {
+            scaleX: 1,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            repeatDelay: 2,
+            ease: "power2.inOut",
+          }
+        );
+      });
+    }
+  }, [isMobile, shuffledImgs]);
+
+  // Animate underline on hover (desktop only)
+  useEffect(() => {
+    if (!isMobile && hoveredIndex !== null) {
+      const el = underlineRefs.current[hoveredIndex];
+      if (el) {
+        gsap.fromTo(
+          el,
+          { scaleX: 0, transformOrigin: "left" },
+          { scaleX: 1, duration: 0.5, ease: "power2.out" }
+        );
+      }
+    }
+  }, [hoveredIndex, isMobile]);
 
   return (
-    <div className="px-5 md:px-16 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-5 md:gap-x-16 gap-y-20 min-h-screen relative z-10 content-end">
-      {shuffledImgs.map((project, index) => (
-        <Link key={index} href={`/${project.id}`} className="block group">
+    <div className={`relative z-10 min-h-screen ${isNavigating ? "blur-sm" : ""}`}>
+      {/* Images */}
+      <div className="px-5 md:px-16 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-5 md:gap-x-16 md:gap-y-16 gap-y-5 content-end mt-10">
+        {shuffledImgs.map((project, index) => (
           <div
-            className="relative   w-full"
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            onClick={() => openModal(index)}
-            style={{ cursor: "pointer" }}
+            key={index}
+            className="block group cursor-pointer"
+            onMouseEnter={() => !isMobile && setHoveredIndex(index)}
+            onMouseLeave={() => !isMobile && setHoveredIndex(null)}
+            onClick={() => handleClick(project.id)}
           >
             <Image
               src={project.coverImage}
               alt={project.alt || `Model ${index + 1}`}
               width={800}
               height={800}
-              className={`w-[100%]  block  ${
-                hoveredIndex !== null && hoveredIndex !== index
+              className={`w-full block ${
+                !isMobile && hoveredIndex !== null && hoveredIndex !== index
                   ? "grayscale"
                   : ""
               }`}
             />
+            <h5 className="text-[9px] md:text-xs pt-2 text-[#343434]">
+              <span className="relative block w-fit text-xs text-[#464646]">
+                {project.for}
+                {/* underline */}
+                <span
+                  ref={(el) => (underlineRefs.current[index] = el)}
+                  className="absolute left-0 bottom-0 h-[1px] w-full bg-[#343434] scale-x-0"
+                />
+              </span>
+            </h5>
           </div>
-          {/* <h5 className="self-start z-20 text-xs text-[#464646] mt-2 underline underline-offset-2"> {project.for}</h5> */}
-          <h5 className="text-xs pt-2 text-[#343434]">
-            <span
-              className=" underline underline-offset-4 lg:no-underline
-        relative
-        after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full
-        after:bg-[#343434] after:origin-left after:scale-x-0 text-xs text-[#464646]
-        group-hover:after:scale-x-100 after:transition-transform after:duration-300
-      "
-            >
-              {project.for}
-            </span>
-          </h5>
-        </Link>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

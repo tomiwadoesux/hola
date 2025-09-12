@@ -6,8 +6,6 @@ import SmoothScroll from "@/components/SmoothScroll";
 
 import { imgs } from "@/data/imgs";
 
-
-
 export default function ProjectId({ params }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -45,7 +43,7 @@ export default function ProjectId({ params }) {
       if (photosSection) {
         const elementPosition = photosSection.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - window.innerHeight / 2;
-        
+
         window.scrollTo({
           top: offsetPosition,
           behavior: "smooth",

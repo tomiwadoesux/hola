@@ -10,7 +10,7 @@
 }
 
 :root {
-  --background: #FFFEFA;
+  --background: #EAEAEA;
   --foreground: #101010;
   --font-sans: 'Bebas Neue', sans-serif; /* 👈 replaced Syne */
   --font-bebas-neue: 'Bebas Neue'; 
@@ -65,7 +65,7 @@ h5 {
   background-position: center;
   background-repeat: no-repeat;
   position: relative; /* Required for overlay positioning */
-}`
+}
 
 .bg-image::before {
   content: "";

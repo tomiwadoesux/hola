@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const LazyVideo = ({ src, poster, ...rest }) => {
   const videoRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const node = videoRef.current;
@@ -12,14 +12,16 @@ const LazyVideo = ({ src, poster, ...rest }) => {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        console.log("Intersection entry:", entry); // ✅ debug
         if (entry.isIntersecting) {
-          console.log("Video is visible:", src); // ✅ debug
-          setIsVisible(true);
+          console.log("Loading video:", src);
+          setShouldLoad(true);
           observer.unobserve(node);
         }
       },
-      { threshold: 0.25 }
+      {
+        threshold: 0.1,
+        rootMargin: "50px 0px",
+      }
     );
 
     observer.observe(node);
@@ -27,12 +29,33 @@ const LazyVideo = ({ src, poster, ...rest }) => {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [src]);
 
+  // If not ready to load, show poster
+  if (!shouldLoad) {
+    return (
+      <div
+        ref={videoRef}
+        className="w-full h-auto rounded shadow bg-gray-100 flex items-center justify-center"
+        style={{
+          backgroundImage: poster ? `url(${poster})` : "none",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          aspectRatio: "16/9", // Adjust based on your video aspect ratio
+        }}
+      >
+        {!poster && (
+          <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+        )}
+      </div>
+    );
+  }
+
+  // Once ready to load, render actual video
   return (
     <video
       ref={videoRef}
-      preload="none"
+      src={src}
       poster={poster}
       muted
       autoPlay
@@ -40,9 +63,11 @@ const LazyVideo = ({ src, poster, ...rest }) => {
       loop
       width="100%"
       className="w-full h-auto rounded shadow"
+      onError={(e) => console.error("Video error:", src, e)}
+      onLoadStart={() => console.log("Video loading started:", src)}
+      onCanPlay={() => console.log("Video can play:", src)}
       {...rest}
     >
-      {isVisible && <source src={src} type="video/mp4" />}
       Your browser does not support the video tag.
     </video>
   );

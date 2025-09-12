@@ -1,73 +1,203 @@
-"use client";
-import Image from "next/image";
-import dynamic from "next/dynamic";
-import AnimatedText from "@/components/AnimatedText";
-import CurtainsGallery from "@/components/CurtainsGallery";
-import SmoothScroll from "@/components/SmoothScroll";
-import CurtainsPolaroids from "@/components/CurtainsPolaroids";
-import { useEffect, useState, useRef } from "react";
-import Photos from "@/components/Photos";
-import Hero from "@/components/Hero";
-import Hero2 from "@/components/Hero2";
-import LetsTalk from "@/components/lets-talk";
-import Ayotomcs from "@/components/ayotomcs";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+"use client"
+import Image from "next/image"
+
+import dynamic from "next/dynamic"
+import AnimatedText from "@/components/AnimatedText"
+import SmoothScroll from "@/components/SmoothScroll"
+import { useEffect, useState, useRef } from "react"
+import Photos from "@/components/Photos"
+import Hero2 from "@/components/Hero2"
+import LetsTalk from "@/components/lets-talk"
+import Ayotomcs from "@/components/ayotomcs"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Polaroids from "@/components/Polaroids"
 
 // Register ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 export default function Home() {
   const LazyVideo = dynamic(() => import("../components/lazyvideo"), {
     ssr: false,
-  });
-
-  // Add this constant for the root margin
-  const PRELOAD_MARGIN = "200%"; // Adjust this value to start loading earlier/later
+  })
 
   // Refs for the polaroids animation
-  const polaroidsTextRef = useRef(null);
-  const polaroidsContainerRef = useRef(null);
-  const imagesTextRef = useRef(null);
-  const imagesContainerRef = useRef(null);
-  const polaroidsGridRef = useRef(null);
-  const imagesGridRef = useRef(null);
+  const polaroidsTextRef = useRef(null)
+  const polaroidsContainerRef = useRef(null)
+  const imagesTextRef = useRef(null)
+  const imagesContainerRef = useRef(null)
+  const polaroidsGridRef = useRef(null)
+  const imagesGridRef = useRef(null)
 
   // Add useRef for the videos container
-  const videosContainerRef = useRef(null);
+  const videosContainerRef = useRef(null)
+  const videosSectionRef = useRef(null)
 
-  // Example video list
-  const videoList = [
-    { src: "/videos/03.mov", poster: "/images/22.web" },
-    { src: "/videos/04.mov", poster: "/images/22.web" },
-    { src: "/videos/07.mov", poster: "/images/22.web" },
-    { src: "/videos/08.mov", poster: "/images/22.web" },
-    { src: "/videos/10.mov", poster: "/images/22.web" },
-    { src: "/videos/09.mov", poster: "/images/22.web" },
-  ];
+  // State to track if videos should start loading
+  const [shouldLoadVideos, setShouldLoadVideos] = useState(false)
+
+  const [rotatedImageIndex, setRotatedImageIndex] = useState(null)
+
+  const allImages = [
+    "/images/23.webp",
+    "/images/25.webp",
+    "/images/61.webp",
+    "/images/27.webp",
+    "/images/29.webp",
+    "/images/63.webp",
+    "/images/26.webp",
+    "/images/62.webp",
+  ]
+
+  const toggleScroll = (disable) => {
+    if (disable) {
+      const scrollY = window.pageYOffset; // Native position
+      document.body.setAttribute("data-scroll-y", scrollY);
+  
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100vw";
+      document.body.style.height = "100vh";
+      document.body.style.overflow = "hidden";
+    } else {
+      const scrollY = parseInt(document.body.getAttribute("data-scroll-y") || "0", 10);
+  
+      // Restore FIRST while fixed
+      window.scrollTo(0, scrollY);
+  
+      // THEN clear styles
+      ["position", "top", "left", "right", "width", "height", "overflow"].forEach(
+        (style) => {
+          document.body.style[style] = "";
+        }
+      );
+  
+      document.body.removeAttribute("data-scroll-y");
+    }
+  };
+
+  const handleImageClick = (index, event) => {
+    event.stopPropagation()
+    const imageElement = event.currentTarget
+
+    if (rotatedImageIndex === index) {
+      const allPolaroids = document.querySelectorAll("[data-image-index]")
+      allPolaroids.forEach((polaroid, idx) => {
+        if (idx !== index) {
+          gsap.to(polaroid, {
+            duration: 0.6,
+            filter: "blur(0px)",
+            ease: "power2.inOut",
+            onComplete: () => {
+              polaroid.style.pointerEvents = "auto"
+            },
+          })
+        }
+      })
+
+      gsap.to(imageElement, {
+        duration: 0.6,
+        rotationY: 0,
+        scale: 1,
+        x: 0,
+        y: 0,
+        zIndex: 1,
+        ease: "power2.inOut",
+        onComplete: () => {
+          setRotatedImageIndex(null)
+          toggleScroll(false) // Enable scroll
+        },
+      })
+    } else {
+      // Get image position and window center
+      const rect = imageElement.getBoundingClientRect()
+      const centerX = window.innerWidth / 2
+      const centerY = window.innerHeight / 2
+
+      // Calculate translate values to center the image
+      const translateX = centerX - rect.left - rect.width / 2
+      const translateY = centerY - rect.top - rect.height / 2
+
+      toggleScroll(true)
+
+      const allPolaroids = document.querySelectorAll("[data-image-index]")
+      allPolaroids.forEach((polaroid, idx) => {
+        if (idx !== index) {
+          polaroid.style.pointerEvents = "none"
+          gsap.to(polaroid, {
+            duration: 0.6,
+            filter: "blur(8px)",
+            ease: "power2.inOut",
+          })
+        }
+      })
+
+      // Rotate and center image
+      gsap.to(imageElement, {
+        duration: 0.6,
+        rotationY: 360,
+        scale: 1.3,
+        x: translateX,
+        y: translateY,
+        zIndex: 9999,
+        ease: "power2.inOut",
+        onComplete: () => {
+          setRotatedImageIndex(index)
+        },
+      })
+    }
+  }
+
+  const handleBackgroundClick = () => {
+    if (rotatedImageIndex !== null) {
+      // Find the rotated image and flip it back
+      const rotatedImage = document.querySelector(`[data-image-index="${rotatedImageIndex}"]`)
+      if (rotatedImage) {
+        handleImageClick(rotatedImageIndex, {
+          stopPropagation: () => {},
+          currentTarget: rotatedImage,
+        })
+      }
+    }
+  }
+
+  // Clean up scroll lock on component unmount or when rotatedImageIndex changes
+  useEffect(() => {
+    return () => {
+      toggleScroll(false) // Ensure scroll is enabled on cleanup
+    }
+  }, [])
+
+  useEffect(() => {
+    if (rotatedImageIndex === null) {
+      toggleScroll(false)
+    }
+  }, [rotatedImageIndex])
 
   // Polaroids scroll effect
   useEffect(() => {
-    const polaroidsText = polaroidsTextRef.current;
-    const polaroidsContainer = polaroidsContainerRef.current;
-    const imagesText = imagesTextRef.current;
-    const imagesContainer = imagesContainerRef.current;
-    const polaroidsGrid = polaroidsGridRef.current;
-    const imagesGrid = imagesGridRef.current;
+    const polaroidsText = polaroidsTextRef.current
+    const polaroidsContainer = polaroidsContainerRef.current
+    const imagesText = imagesTextRef.current
+    const imagesContainer = imagesContainerRef.current
+    const polaroidsGrid = polaroidsGridRef.current
+    const imagesGrid = imagesGridRef.current
 
-    if (!imagesText || !imagesContainer || !imagesGrid) return;
-    if (!polaroidsText || !polaroidsContainer || !polaroidsGrid) return;
+    if (!imagesText || !imagesContainer || !imagesGrid) return
+    if (!polaroidsText || !polaroidsContainer || !polaroidsGrid) return
 
     // Set initial state - start at 1.4 scale
     gsap.set(polaroidsText, {
       scale: 1.0,
       opacity: 1,
-    });
+    })
 
     gsap.set(imagesText, {
       scale: 1.0,
       opacity: 1,
-    });
+    })
 
     // Create the main scroll trigger for scaling and pinning
     const mainTimeline = gsap.timeline({
@@ -80,6 +210,9 @@ export default function Home() {
         pinSpacing: false,
         anticipatePin: 1,
       },
+    })
+
+    const imagesTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: imagesContainer,
         start: "top 40%",
@@ -89,7 +222,7 @@ export default function Home() {
         pinSpacing: false,
         anticipatePin: 1,
       },
-    });
+    })
 
     // Scale down animation
     mainTimeline
@@ -99,109 +232,112 @@ export default function Home() {
         duration: 0.1,
         ease: "power1.Out",
       })
-      // Keep it scaled and pinned
       .to(polaroidsText, {
         scale: 0.8,
         opacity: 1,
         duration: 0.1,
         ease: "power1.In",
       })
+
+    imagesTimeline
       .to(imagesText, {
         scale: 0.8,
         opacity: 1,
         duration: 0.1,
         ease: "power1.Out",
       })
-      // Keep it scaled and pinned
       .to(imagesText, {
         scale: 0.8,
         opacity: 1,
         duration: 0.1,
         ease: "power1.In",
-      });
+      })
 
     // Unpin when approaching photos section
     ScrollTrigger.create({
-      trigger: polaroidsContainer,
+      trigger: 
+      sContainer,
       start: "bottom-40% center",
       onEnter: () => {
-        // Just unpin and let it scroll naturally
         gsap.set(polaroidsText, {
           clearProps: "all",
-        });
+        })
       },
-      // onLeaveBack: () => {
-      //   // Return to pinned state when scrolling back up
-      //   gsap.to(polaroidsText, {
-      //     opacity: 1,
-      //     scale: 0.9,
-      //     y: 0,
-      //     duration: 0.8,
-      //     ease: "power2.inOut"
-      //   });
-      // }
-    });
+    })
 
     ScrollTrigger.create({
       trigger: imagesContainer,
       start: "bottom-40% center",
       onEnter: () => {
-        // Just unpin and let it scroll naturally
         gsap.set(imagesText, {
           clearProps: "all",
-        });
+        })
       },
-      // onLeaveBack: () => {
-      //   // Return to pinned state when scrolling back up
-      //   gsap.to(polaroidsText, {
-      //     opacity: 1,
-      //     scale: 0.9,
-      //     y: 0,
-      //     duration: 0.8,
-      //     ease: "power2.inOut"
-      //   });
-      // }
-    });
+    })
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+    }
+  }, [])
 
-  // Add this useEffect for preloading
+  // Enhanced video preloading system
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: `0px 0px ${PRELOAD_MARGIN} 0px`, // Load when within 200% of viewport
+      rootMargin: "300px 0px 300px 0px", // Start loading 300px before the videos section
       threshold: 0,
-    };
+    }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Start loading all videos in the container
-          const videos = entry.target.querySelectorAll("video");
-          videos.forEach((video) => {
-            if (video.dataset.src) {
-              video.src = video.dataset.src;
-              delete video.dataset.src;
-            }
-          });
-          observer.unobserve(entry.target); // Stop observing once loading starts
+          console.log("Videos section approaching - starting to load videos")
+          setShouldLoadVideos(true)
+          observer.unobserve(entry.target)
         }
-      });
-    }, options);
+      })
+    }, options)
 
-    if (videosContainerRef.current) {
-      observer.observe(videosContainerRef.current);
+    if (videosSectionRef.current) {
+      observer.observe(videosSectionRef.current)
     }
 
-    return () => observer.disconnect();
-  }, []);
+    return () => observer.disconnect()
+  }, [])
+
+  // Preload videos when shouldLoadVideos becomes true
+  useEffect(() => {
+    if (shouldLoadVideos) {
+      console.log("Preloading videos...")
+      videoList.forEach((video, index) => {
+        const videoElement = document.createElement("video")
+        videoElement.preload = "metadata"
+        videoElement.src = video.src
+
+        videoElement.addEventListener("loadedmetadata", () => {
+          console.log(`Video ${index + 1} metadata loaded`)
+        })
+
+        videoElement.addEventListener("canplaythrough", () => {
+          console.log(`Video ${index + 1} can play through`)
+        })
+      })
+    }
+  }, [shouldLoadVideos])
+
+  // Example video list
+  const videoList = [
+    { src: "/videos/03.mov", poster: "/images/22.webp" },
+    { src: "/videos/04.mov", poster: "/images/22.webp" },
+    { src: "/videos/07.mov", poster: "/images/22.webp" },
+    { src: "/videos/08.mov", poster: "/images/22.webp" },
+    { src: "/videos/10.mov", poster: "/images/22.webp" },
+    { src: "/videos/09.mov", poster: "/images/22.webp" },
+  ]
 
   return (
     <SmoothScroll>
-      <section className="">
+      <section className="" onClick={handleBackgroundClick}>
         <div className="">
           <Hero2 />
         </div>
@@ -211,17 +347,18 @@ export default function Home() {
           {/* Pinned/Fixed Text */}
           <div className="relative z-10 flex justify-center">
             <AnimatedText
+              ref={polaroidsTextRef}
               text="POLAROIDS"
               className="self-center text-[#343434] py-11 text-center text-4xl md:text-6xl lg:text-6xl"
             />
           </div>
 
           {/* Scrolling Images Grid */}
-          <div
+          {/* <div
             ref={polaroidsGridRef}
             className="relative z-20 px-5 md:px-12 lg:px-16 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-y-24 lg:gap-y-36 gap-x-5 md:gap-x-12 lg:gap-x-14"
           >
-            <div className="">
+            <div className="cursor-pointer" onClick={(e) => handleImageClick(0, e)} data-image-index="0">
               <Image
                 src="/images/23.webp"
                 alt="Model"
@@ -230,7 +367,7 @@ export default function Home() {
                 className="bg-[#F2F2F2] shadow-xs px-3 md:px-5 pt-3 md:pt-6 pb-10 md:pb-20"
               />
             </div>
-            <div className="">
+            <div className="cursor-pointer" onClick={(e) => handleImageClick(1, e)} data-image-index="1">
               <Image
                 src="/images/25.webp"
                 alt="01"
@@ -239,7 +376,7 @@ export default function Home() {
                 className="bg-[#F2F2F2] shadow-sm px-3 md:px-5 pt-3 md:pt-6 pb-10 md:pb-20"
               />
             </div>
-            <div className="">
+            <div className="cursor-pointer" onClick={(e) => handleImageClick(2, e)} data-image-index="2">
               <Image
                 src="/images/61.webp"
                 alt="01"
@@ -248,7 +385,7 @@ export default function Home() {
                 className="bg-[#F2F2F2] shadow-sm px-3 md:px-5 pt-3 md:pt-6 pb-10 md:pb-20"
               />
             </div>
-            <div className="">
+            <div className="cursor-pointer" onClick={(e) => handleImageClick(3, e)} data-image-index="3">
               <Image
                 src="/images/27.webp"
                 alt="01"
@@ -257,7 +394,7 @@ export default function Home() {
                 className="bg-[#F2F2F2] shadow-sm px-3 md:px-5 pt-3 md:pt-6 pb-10 md:pb-20"
               />
             </div>
-            <div className="">
+            <div className="cursor-pointer" onClick={(e) => handleImageClick(4, e)} data-image-index="4">
               <Image
                 src="/images/29.webp"
                 alt="01"
@@ -266,7 +403,7 @@ export default function Home() {
                 className="bg-[#F2F2F2] shadow-sm px-3 md:px-5 pt-3 md:pt-6 pb-10 md:pb-20"
               />
             </div>
-            <div className="">
+            <div className="cursor-pointer" onClick={(e) => handleImageClick(5, e)} data-image-index="5">
               <Image
                 src="/images/63.webp"
                 alt="01"
@@ -275,7 +412,7 @@ export default function Home() {
                 className="bg-[#F2F2F2] shadow-sm px-3 md:px-5 pt-3 md:pt-6 pb-10 md:pb-20"
               />
             </div>
-            <div className="">
+            <div className="cursor-pointer" onClick={(e) => handleImageClick(6, e)} data-image-index="6">
               <Image
                 src="/images/26.webp"
                 alt="01"
@@ -284,7 +421,7 @@ export default function Home() {
                 className="bg-[#F2F2F2] shadow-sm px-3 md:px-5 pt-3 md:pt-6 pb-10 md:pb-20"
               />
             </div>
-            <div className="">
+            <div className="cursor-pointer" onClick={(e) => handleImageClick(7, e)} data-image-index="7">
               <Image
                 src="/images/62.webp"
                 alt="01"
@@ -293,16 +430,14 @@ export default function Home() {
                 className="bg-[#F2F2F2] shadow-sm px-3 md:px-5 pt-3 md:pt-6 pb-10 md:pb-20"
               />
             </div>
-          </div>
+          </div> */}
+          <Polaroids/>
         </div>
 
         {/* Photos Section */}
-        <div
-          ref={imagesContainerRef}
-          id="photos"
-          className="flex h-full pt-2 w-full flex-col relative z-30"
-        >
+        <div ref={imagesContainerRef} id="photos" className="flex h-full pt-2 w-full flex-col relative z-30">
           <AnimatedText
+            ref={imagesTextRef}
             text="PHOTOS"
             className="self-center text-[#343434] py-7 md:py-11 text-center text-4xl md:text-6xl lg:text-6xl"
           />
@@ -312,27 +447,28 @@ export default function Home() {
         </div>
 
         {/* Videos Section */}
-        <div id="videos" className="flex pt-11 flex-col">
+        <div ref={videosSectionRef} id="videos" className="flex pt-11 flex-col">
           <AnimatedText
             text="VIDEOS"
             className="self-center text-[#343434] py-11 text-center text-4xl md:text-6xl lg:text-6xl"
           />
-        </div>
-        <div className="gap-3 pb-8 flex-col flex">
-          <div
-            ref={videosContainerRef}
-            className="px-5 md:px-16 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-5 md:gap-x-16 gap-y-20 min-h-screen relative z-10"
-          >
-            {videoList.map((video, idx) => (
-              <LazyVideo
-                key={idx}
-                src={video.src}
-                poster={video.poster}
-                muted
-                width="100%"
-                className="w-full h-auto"
-              />
-            ))}
+
+          <div className="gap-3 pb-8 flex-col flex">
+            <div
+              ref={videosContainerRef}
+              className="px-5 md:px-16 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-5 md:gap-x-16 gap-y-20 min-h-screen relative z-10"
+            >
+              {videoList.map((video, idx) => (
+                <LazyVideo
+                  key={idx}
+                  src={video.src}
+                  poster={video.poster}
+                  muted
+                  width="100%"
+                  className="w-full h-auto"
+                />
+              ))}
+            </div>
           </div>
         </div>
 
@@ -363,5 +499,5 @@ export default function Home() {
         </div>
       </section>
     </SmoothScroll>
-  );
+  )
 }
