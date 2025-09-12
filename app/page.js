@@ -256,7 +256,7 @@ export default function Home() {
     // Unpin when approaching photos section
     ScrollTrigger.create({
       trigger: 
-      sContainer,
+      Container,
       start: "bottom-40% center",
       onEnter: () => {
         gsap.set(polaroidsText, {
@@ -305,35 +305,36 @@ export default function Home() {
     return () => observer.disconnect()
   }, [])
 
-  // Preload videos when shouldLoadVideos becomes true
-  useEffect(() => {
-    if (shouldLoadVideos) {
-      console.log("Preloading videos...")
-      videoList.forEach((video, index) => {
-        const videoElement = document.createElement("video")
-        videoElement.preload = "metadata"
-        videoElement.src = video.src
+// Example video list - move it ABOVE the effect
+const videoList = [
+  { src: "/videos/03.mov", poster: "/images/veed.webp" },
+  { src: "/videos/04.mov", poster: "/images/veed.webp" },
+  { src: "/videos/07.mov", poster: "/images/veed.webp" },
+  { src: "/videos/08.mov", poster: "/images/veed.webp" },
+  { src: "/videos/10.mov", poster: "/images/veed.webp" },
+  { src: "/videos/09.mov", poster: "/images/veed.webp" },
+]
 
-        videoElement.addEventListener("loadedmetadata", () => {
-          console.log(`Video ${index + 1} metadata loaded`)
-        })
+// Enhanced video preloading system
+useEffect(() => {
+  if (!shouldLoadVideos) return
 
-        videoElement.addEventListener("canplaythrough", () => {
-          console.log(`Video ${index + 1} can play through`)
-        })
-      })
-    }
-  }, [shouldLoadVideos])
+  console.log("Preloading videos...")
+  videoList.forEach((video, index) => {
+    const videoElement = document.createElement("video")
+    videoElement.preload = "metadata"
+    videoElement.src = video.src
 
-  // Example video list
-  const videoList = [
-    { src: "/videos/03.mov", poster: "/images/22.webp" },
-    { src: "/videos/04.mov", poster: "/images/22.webp" },
-    { src: "/videos/07.mov", poster: "/images/22.webp" },
-    { src: "/videos/08.mov", poster: "/images/22.webp" },
-    { src: "/videos/10.mov", poster: "/images/22.webp" },
-    { src: "/videos/09.mov", poster: "/images/22.webp" },
-  ]
+    videoElement.addEventListener("loadedmetadata", () => {
+      console.log(`Video ${index + 1} metadata loaded`)
+    })
+
+    videoElement.addEventListener("canplaythrough", () => {
+      console.log(`Video ${index + 1} can play through`)
+    })
+  })
+}, [shouldLoadVideos, videoList])
+
 
   return (
     <SmoothScroll>
