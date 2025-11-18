@@ -305,19 +305,26 @@ export default function Home() {
     return () => observer.disconnect()
   }, [])
 
+// SVG for the video poster
+const videoPlayerSVG = `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#343434" stroke-width="8"/>
+  <polygon points="85,70 135,100 85,130" fill="#343434"/>
+</svg>`;
+const videoPosterDataURI = `data:image/svg+xml;base64,${Buffer.from(videoPlayerSVG).toString('base64')}`;
+
 // Example video list - move it ABOVE the effect
 const videoList = [
-  { src: "/videos/03.mov", poster: "/icons/video-player.svg" },
-  { src: "/videos/04.mov", poster: "/icons/video-player.svg" },
-  { src: "/videos/11.mp4", poster: "/icons/video-player.svg" },
+  { src: "/videos/03.mov", poster: videoPosterDataURI },
+  { src: "/videos/04.mov", poster: videoPosterDataURI },
+  { src: "/videos/11.mp4", poster: videoPosterDataURI },
 
-  { src: "/videos/07.mov", poster: "/icons/video-player.svg" },
-  { src: "/videos/08.mov", poster: "/icons/video-player.svg" },
-  { src: "/videos/12.mp4", poster: "/icons/video-player.svg" },
+  { src: "/videos/07.mov", poster: videoPosterDataURI },
+  { src: "/videos/08.mov", poster: videoPosterDataURI },
+  { src: "/videos/12.mp4", poster: videoPosterDataURI },
 
-  { src: "/videos/10.mov", poster: "/icons/video-player.svg" },
-  { src: "/videos/09.mov", poster: "/icons/video-player.svg" },
-  { src: "/videos/13.mp4", poster: "/icons/video-player.svg" },
+  { src: "/videos/10.mov", poster: videoPosterDataURI },
+  { src: "/videos/09.mov", poster: videoPosterDataURI },
+  { src: "/videos/13.mp4", poster: videoPosterDataURI },
 
 ]
 
