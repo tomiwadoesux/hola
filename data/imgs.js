@@ -343,4 +343,41 @@ export const imgs = [
     stylist: "Olivia Carterr",
     stylistLink: "https://www.instagram.com/olivia_carterr/",
   },
+  {
+  "id": "17",
+  "coverImage": "/images/205.webp",
+  "images": [
+    "/images/195.webp",
+    "/images/196.webp",
+    "/images/197.webp",
+    "/images/198.webp",
+    "/images/199.webp",
+    "/images/200.webp",
+    "/images/201.webp",
+    "/images/202.webp",
+    "/images/203.webp",
+    "/images/204.webp",
+    "/images/216.webp",
+    "/images/206.webp",
+    "/images/207.webp",
+    "/images/208.webp",
+    "/images/209.webp",
+    "/images/210.webp",
+    "/images/211.webp",
+    "/images/212.webp",
+    "/images/213.webp",
+    "/images/214.webp",
+    "/images/215.webp"
+  ],
+  "alt": "Akinwale Olaoluwa",
+  "description": "A shoot of Momamia",
+  "for": "OLA FOR PROP IT HIRES",
+  "shout": "PROP IT HIRES",
+  "shoutLink": "https://www.instagram.com/zao.photography/",
+  "photographer": "Josh Faithi",
+  "photographerLink": "https://www.instagram.com/josh_faithi/",
+  "stylist": "Isabelle Creative",
+  "stylistLink": "https://www.instagram.com/isabellecreative_/"
+}
+
 ];

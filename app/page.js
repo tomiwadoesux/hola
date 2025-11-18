@@ -307,12 +307,18 @@ export default function Home() {
 
 // Example video list - move it ABOVE the effect
 const videoList = [
-  { src: "/videos/03.mov", poster: "/images/veed.webp" },
-  { src: "/videos/04.mov", poster: "/images/veed.webp" },
-  { src: "/videos/07.mov", poster: "/images/veed.webp" },
-  { src: "/videos/08.mov", poster: "/images/veed.webp" },
-  { src: "/videos/10.mov", poster: "/images/veed.webp" },
-  { src: "/videos/09.mov", poster: "/images/veed.webp" },
+  { src: "/videos/03.mov", poster: "/icons/video-player.svg" },
+  { src: "/videos/04.mov", poster: "/icons/video-player.svg" },
+  { src: "/videos/11.mp4", poster: "/icons/video-player.svg" },
+
+  { src: "/videos/07.mov", poster: "/icons/video-player.svg" },
+  { src: "/videos/08.mov", poster: "/icons/video-player.svg" },
+  { src: "/videos/12.mp4", poster: "/icons/video-player.svg" },
+
+  { src: "/videos/10.mov", poster: "/icons/video-player.svg" },
+  { src: "/videos/09.mov", poster: "/icons/video-player.svg" },
+  { src: "/videos/13.mp4", poster: "/icons/video-player.svg" },
+
 ]
 
 // Enhanced video preloading system
