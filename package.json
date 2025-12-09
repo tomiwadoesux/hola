@@ -14,7 +14,7 @@
     "@vercel/analytics": "^1.5.0",
     "curtainsjs": "^8.1.6",
     "gsap": "^3.13.0",
-    "next": "15.3.3",
+    "next": "15.3.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
